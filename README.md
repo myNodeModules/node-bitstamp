@@ -1,5 +1,6 @@
 # node-bitstamp
 
+[![Build Status](https://travis-ci.org/myNodeModules/node-bitstamp.svg)](https://travis-ci.org/myNodeModules/node-bitstamp)
 A node module using bitstamp REST API and Websockets API to can keep track of any transactions coming.
 
 ## Installation

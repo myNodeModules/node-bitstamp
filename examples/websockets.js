@@ -5,7 +5,8 @@ client.webSockets(client.liveFullOrderBook, printData);
 
 function printData (data) {
 	console.log('------timestamp------');
-	console.log(data.timestamp);
+	console.log('timestamp: ' + data.timestamp);
+	console.log('local: ' + Math.round(Date.now() / 1000));
 	console.log('---------------------');
 	console.log('--------asks---------');
 	console.log(data.bids);

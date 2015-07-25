@@ -30,7 +30,7 @@ Bitstamp.prototype.liveOrderBook = function liveOrderBook (fc) {
 
 Bitstamp.prototype.liveFullOrderBook = function liveFullOrderBook (fc) {
 	var pusherClient = new Pusher('de504dc5763aeef9ff52')
-	var diff_order_book = pusherClient2.subscribe('diff_order_book')
+	var diff_order_book = pusherClient.subscribe('diff_order_book')
 	pusherClient.bind('data', data => {
 		fc(data);
 	});
