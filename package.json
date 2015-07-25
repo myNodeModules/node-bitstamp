@@ -1,0 +1,39 @@
+{
+  "name": "node-bitstamp",
+  "version": "0.1.0",
+  "description": "Bitstamp REST API and Websockets API module",
+  "main": "dist/node-bitstamp.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-runtime": "^5.8.3",
+    "pusher-client": "^0.2.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha test/bitstamp-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myNodeModules/node-bitstamp.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "bitstamp",
+    "trading",
+    "api"
+  ],
+  "author": "Maxime Vaude (http://mvaude.com)",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/myNodeModules/node-bitstamp/issues"
+  },
+  "homepage": "https://github.com/myNodeModules/node-bitstamp#readme"
+}
