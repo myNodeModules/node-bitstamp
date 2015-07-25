@@ -25,15 +25,15 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 
 ## History
 
-TODO: Write history
+TODO: Convert functions to module
 
 ## Credits
 
-TODO: Write credits
+[Maxime Vaude](http://mvaude.com)
 
 ## License
 
-TODO: Write license
+This project is licensed under the terms of the BSD license.
 
 ## Support
 
