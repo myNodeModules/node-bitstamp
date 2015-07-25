@@ -11,7 +11,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('compile', function() {
   gulp
-    .src('src/**/*.js')
+    .src('src/*.js')
     .pipe(plumber({
       errorHandler: function(err) {
         console.error(err.stack);
@@ -26,7 +26,7 @@ gulp.task('compile', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.js', ['compile']);
+  gulp.watch('src/*.js', ['compile']);
 });
 
 gulp.task('default', ['compile']);

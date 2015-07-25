@@ -1,38 +1,39 @@
-var Pusher = require('pusher-client');
-var trades = new Pusher('de504dc5763aeef9ff52');
-var full_book = new Pusher('de504dc5763aeef9ff52');
+var Pusher = require('pusher-client')
+, date = Date.now();
 
-var live_trades = trades.subscribe('live_trades');
-var order_book = trades.subscribe('order_book');
-var diff_order_book = full_book.subscribe('diff_order_book');
+var Bitstamp = function () {
+};
 
-trades.bind('trade',
-  function(data) {
-    console.log("-----> Live Trades <-----");
-    console.log(Math.floor(new Date() / 1000));
-    console.log(data);
-    console.log("------------------------");
-  }
-);
+Bitstamp.prototype.webSockets = function (channel, callback) {
+	if (!callback) {
+		channel = callback;
+		callback = undefinecallback;
+	}
+	channel(callback);
+};
 
-trades.bind('data',
-  function(data) {
-    console.log("-----> Order Book <-----");
-    console.log(Math.floor(new Date() / 1000));
-    console.log(data.asks);
-    console.log(data.bids);
-    console.log("------------------------");
-  }
-);
+Bitstamp.prototype.liveTicker = function liveTicker (fc) {
+	var pusherClient = new Pusher('de504dc5763aeef9ff52')
+	var live_trades = pusherClient.subscribe('live_trades')
+	pusherClient.bind('trade', data => {
+		fc(data);
+	});
+};
 
+Bitstamp.prototype.liveOrderBook = function liveOrderBook (fc) {
+	var pusherClient = new Pusher('de504dc5763aeef9ff52')
+	var order_book = pusherClient.subscribe('order_book')
+	pusherClient.bind('data', data => {
+		fc(data);
+	});
+};
 
-full_book.bind('data',
-  function(data) {
-    console.log("-----> Full Order Book<-----");
-    console.log(Math.floor(new Date() / 1000));
-    console.log(data.asks);
-    console.log(data.bids);
-    console.log("---------------------------");
-  }
+Bitstamp.prototype.liveFullOrderBook = function liveFullOrderBook (fc) {
+	var pusherClient = new Pusher('de504dc5763aeef9ff52')
+	var diff_order_book = pusherClient2.subscribe('diff_order_book')
+	pusherClient.bind('data', data => {
+		fc(data);
+	});
+};
 
-);
+module.exports = Bitstamp;
