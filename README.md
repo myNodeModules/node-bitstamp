@@ -1,8 +1,6 @@
 # node-bitstamp
 
 ---
-
-
 ## Installation
 
 ---
@@ -13,15 +11,12 @@ npm install node-bitstamp
 ```
 
 ## Usage
-
 ---
 
 * Description
 
 A node module using bitstamp REST API and Websockets API to can keep track of any transactions coming.
-
 ---
-
 * Installation instructions
 
 For the moment you can just install it manually from github.
