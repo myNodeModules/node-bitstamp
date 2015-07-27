@@ -2,13 +2,14 @@
   "name": "node-bitstamp",
   "version": "0.1.0",
   "description": "Bitstamp REST API and Websockets API module",
-  "main": "dist/node-bitstamp.js",
+  "main": "dist/bitstamp-api.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "babel-runtime": "^5.8.3",
-    "pusher-client": "^0.2.3"
+    "pusher-client": "^0.2.3",
+    "request": "^2.60.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

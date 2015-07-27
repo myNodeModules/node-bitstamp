@@ -11,14 +11,14 @@ describe('HTTP requests tests', function () {
 			});
 		});
 	});
-/*	describe('ticker_hour channel', function () {
+	describe('ticker_hour channel', function () {
 		it('should trigger channel with the good keys', function (done) {
 			client.httpRequest('ticker_hour', function (data) {
 				assert.deepEqual(["high", "last", "timestamp", "bid", "vwap", "volume", "low", "ask"], Object.keys(JSON.parse(data)));
 				done();
 			});
 		});
-	});*/
+	});
 	describe('order_book channel', function () {
 		it('should trigger channel with the good keys', function (done) {
 			client.httpRequest('order_book', function (data) {
@@ -27,7 +27,7 @@ describe('HTTP requests tests', function () {
 			});
 		});
 	});
-/*	describe('transactions channel', function () {
+	describe('transactions channel', function () {
 		it('should trigger channel with the good keys', function (done) {
 			client.httpRequest('transactions', function (data) {
 				assert.deepEqual(["date", "tid", "price", "amount", "type"], Object.keys(JSON.parse(data)));
@@ -41,5 +41,5 @@ describe('HTTP requests tests', function () {
 				done();
 			});
 		});
-	});*/
+	});
 });
