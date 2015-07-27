@@ -1,4 +1,4 @@
-let Pusher = require('pusher-client')
+var Pusher = require('pusher-client')
 , date = Date.now()
 , request = require('request')
 , Readable = require('stream').Readable;
@@ -6,15 +6,19 @@ let Pusher = require('pusher-client')
 let Bitstamp = function () {
 };
 
-Bitstamp.prototype.webSockets = function (channel) {
-	return channel();
+Bitstamp.prototype.webSocketRequest = function (channel) {
+	let pusherClient = new Pusher('de504dc5763aeef9ff52');
+	let live_trades = pusherClient.subscribe(channel);
+	let readStream = new Readable({ objectMode: true });
+	readStream._read = function() {
+	};
+	pusherClient.bind('data', data => {
+		readStream.push(data);
+	});
+	return readStream;
 };
 
 Bitstamp.prototype.httpRequest = function (channel, callback) {
-	if (!callback) {
-		channel = callback;
-		callback = undefined;
-	}
 	var url = 'http://www.bitstamp.net/api/' + channel + '/';
 
 	request(url, function (err, response, body) {
@@ -25,30 +29,17 @@ Bitstamp.prototype.httpRequest = function (channel, callback) {
 Bitstamp.prototype.liveTicker = function liveTicker (fc) {
 	let pusherClient = new Pusher('de504dc5763aeef9ff52')
 	let live_trades = pusherClient.subscribe('live_trades')
+	let streamedData;
 	pusherClient.bind('trade', data => {
-		fc(data);
+		streamData = data;
 	});
+	return streamData(streamedData);
 };
 
 Bitstamp.prototype.liveOrderBook = function liveOrderBook () {
-	var pusherClient = new Pusher('de504dc5763aeef9ff52')
-	var order_book = pusherClient.subscribe('order_book')
-	var readStream = new Readable({ objectMode: true });
-	readStream.curData = [];
-	readStream._read = function() {
-		if (this.curData.length > 0) {
-			console.log('read');
-			this.push(this.curData[0]);
-			this.curData = this.curData.slice(1);
-		}
-		else {
-			return null;
-		}
-	};
-	pusherClient.bind('data', data => {
-		readStream.push(data);
-	});
-	return readStream;
+	let pusherClient = new Pusher('de504dc5763aeef9ff52')
+	let order_book = pusherClient.subscribe('order_book')
+	let streamedData
 };
 
 Bitstamp.prototype.liveFullOrderBook = function liveFullOrderBook (fc) {
@@ -58,5 +49,10 @@ Bitstamp.prototype.liveFullOrderBook = function liveFullOrderBook (fc) {
 		fc(data);
 	});
 };
+
+let streamData = function (data) {
+	let readStream = new Readable({ objectMode: true });
+	return readStream.push(data);
+}
 
 module.exports = Bitstamp;

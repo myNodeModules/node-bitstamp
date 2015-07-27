@@ -30,14 +30,15 @@ describe('HTTP requests tests', function () {
 	describe('transactions channel', function () {
 		it('should trigger channel with the good keys', function (done) {
 			client.httpRequest('transactions', function (data) {
-				assert.deepEqual(["date", "tid", "price", "amount", "type"], Object.keys(JSON.parse(data)));
+				assert.deepEqual(["date", "tid", "price", "type", "amount"], Object.keys(JSON.parse(data)[0]));
+				done();
 			});
 		});
 	});
 	describe('eur_usd channel', function () {
 		it('should trigger channel with the good keys', function (done) {
 			client.httpRequest('eur_usd', function (data) {
-				assert.equal(["blabla", "usd"], Object.keys(JSON.parse(data)));
+				assert.deepEqual(["sell", "buy"], Object.keys(JSON.parse(data)));
 				done();
 			});
 		});
