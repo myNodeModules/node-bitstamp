@@ -9,10 +9,15 @@ export function webSocketRequest (channel) {
 	let readStream = new Readable({ objectMode: true });
 	readStream._read = function() {
 	};
-	pusherClient.bind('data', data => {
+/*	pusherClient.bind('data', data => {
 		readStream.push(data);
+	});*/
+	return new Promise((resolve, reject) => {
+		pusherClient.bind('data', data => {
+			resolve(data);
+		});
 	});
-	return readStream;
+	
 };
 
 export function httpRequest (channel, callback) {

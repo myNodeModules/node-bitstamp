@@ -1,7 +1,10 @@
 var Bitstamp = require('../dist/bitstamp-api.js');
-var client = new Bitstamp();
 
-client.webSockets(client.liveFullOrderBook, printData);
+var getValues = function (data) {
+	console.log(data.bids.map(function (value) { return value[0]; }).concat(data.asks.map(function (value) { return value[0]; })));
+}
+
+Bitstamp.webSocketRequest('order_book').then(console.log);
 
 function printData (data) {
 	console.log('------timestamp------');
