@@ -1,12 +1,9 @@
-var Pusher = require('pusher-client')
+let Pusher = require('pusher-client')
 , date = Date.now()
 , request = require('request')
 , Readable = require('stream').Readable;
 
-let Bitstamp = function () {
-};
-
-Bitstamp.prototype.webSocketRequest = function (channel) {
+export function webSocketRequest (channel) {
 	let pusherClient = new Pusher('de504dc5763aeef9ff52');
 	let live_trades = pusherClient.subscribe(channel);
 	let readStream = new Readable({ objectMode: true });
@@ -18,12 +15,10 @@ Bitstamp.prototype.webSocketRequest = function (channel) {
 	return readStream;
 };
 
-Bitstamp.prototype.httpRequest = function (channel, callback) {
-	var url = 'http://www.bitstamp.net/api/' + channel + '/';
+export function httpRequest (channel, callback) {
+	let url = 'http://www.bitstamp.net/api/' + channel + '/';
 
 	request(url, function (err, response, body) {
 		callback(body);
 	});
 }
-
-module.exports = Bitstamp;
