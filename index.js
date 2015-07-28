@@ -1,1 +1,1 @@
-rts = require('./dist/bitstamp-api.js');
+module.exports = require('./dist/bitstamp-api.js');
