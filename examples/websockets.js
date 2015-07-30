@@ -1,10 +1,8 @@
 var Bitstamp = require('../dist/bitstamp-api.js');
 
-var getValues = function (data) {
-	console.log(data.bids.map(function (value) { return value[0]; }).concat(data.asks.map(function (value) { return value[0]; })));
-}
-
-Bitstamp.webSocketRequest('order_book').then(console.log);
+Bitstamp.webSocketRequest('order_book').on('data', function (data) {
+	console.log(data);
+});
 
 function printData (data) {
 	console.log('------timestamp------');
